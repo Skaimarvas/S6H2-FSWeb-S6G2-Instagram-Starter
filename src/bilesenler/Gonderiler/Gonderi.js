@@ -26,7 +26,7 @@ const Gonderi = (props) => {
         begeniSayisi={gonderi.likes}
       />
       {/* Yorumlar da proplara dikkat istiyor! */}
-      <Yorumlar />
+      <Yorumlar yorumlar={gonderi.comments} />
     </div>
   );
 };
