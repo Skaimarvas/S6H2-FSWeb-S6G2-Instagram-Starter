@@ -19,7 +19,12 @@ const App = () => {
   // Gönderi nesneleri dizisini tutmak için "gonderiler" adlı bir state oluşturun, **sahteVeri'yi yükleyin**.
   // Artık sahteVeri'ye ihtiyacınız olmayacak.
   // Arama çubuğunun çalışması için , arama kriterini tutacak başka bir state'e ihtiyacımız olacak.
-  const [gonderiler, setGonderiler] = useState(sahteVeri);
+  const [gonderiler, setGonderiler] = useState(
+    sahteVeri.map((gonderi) => ({
+      ...gonderi,
+      liked: false,
+    }))
+  );
   console.log(gonderiler);
   const [arama, setArama] = useState("");
   const gonderiyiBegen = (gonderiID) => {
@@ -37,7 +42,11 @@ const App = () => {
     setGonderiler((prevGonderiler) =>
       prevGonderiler.map((gonderi) =>
         gonderi.id === gonderiID
-          ? { ...gonderi, likes: gonderi.likes + 1 }
+          ? {
+              ...gonderi,
+              likes: gonderi.liked ? gonderi.likes : gonderi.likes + 1,
+              liked: true,
+            }
           : gonderi
       )
     );
