@@ -28,12 +28,19 @@ const App = () => {
 
       Uygulamanın durumu, React ağacının en üstünde bulunur, ancak iç içe geçmiş bileşenlerin stateleri değiştirememesi adil olmaz!
       Bu fonksiyon, belirli bir gönderinin beğeni sayısını artırılmasına olanak sağlamak amacıyla iç içe geçmiş bileşenlere aktarılır.
-
+     
 	  "setGonderi" yi çağırın ve state ine "posts.map" çağrısını iletin.
       `map` içine iletilen callback aşağıdaki mantığı gerçekleştirir:
         - gönderinin idsi "gonderiID" ile eşleşirse, istenen değerlerle yeni bir gönderi nesnesi döndürün.
         - aksi takdirde, sadece gönderi nesnesini değiştirmeden döndürün.
      */
+    setGonderiler((prevGonderiler) =>
+      prevGonderiler.map((gonderi) =>
+        gonderi.id === gonderiID
+          ? { ...gonderi, likes: gonderi.likes + 1 }
+          : gonderi
+      )
+    );
   };
 
   return (
